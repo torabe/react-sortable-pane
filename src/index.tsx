@@ -87,7 +87,7 @@ export type SortablePaneProps = {
   dragHandleClassName?: string;
   defaultOrder?: string[];
   order?: string[];
-  springConfig?: SpringHelperConfig,
+  springConfig?: SpringHelperConfig;
   children: React.ReactElement<PaneProps>[];
 };
 
@@ -122,7 +122,7 @@ class SortablePane extends React.Component<SortablePaneProps, State> {
     className: '',
     disableEffect: false,
     isSortable: true,
-    springConfig: defaultSpringConfig
+    springConfig: defaultSpringConfig,
   };
 
   constructor(props: SortablePaneProps) {
@@ -261,6 +261,13 @@ class SortablePane extends React.Component<SortablePaneProps, State> {
       Number((pane.ref && (pane.ref as HTMLElement).offsetHeight) || 0),
     );
     return this.isHorizontal() ? width : height;
+  }
+
+  getHeight(): string {
+    const height = this.panes.map((pane: PaneProperty) =>
+      Number((pane.ref && (pane.ref as HTMLElement).offsetHeight) || 0),
+    );
+    return height + 'px';
   }
 
   /**
@@ -499,7 +506,7 @@ class SortablePane extends React.Component<SortablePaneProps, State> {
     const wasPressed = this.state.isPressed;
     this.setState({ isPressed: false, delta: 0 });
     const child = children[this.state.lastPressed];
-    if(!child) return;
+    if (!child) return;
     if (!this.props.isSortable) return;
     const panes = this.state.panes;
     if (this.props.onDragStop && wasPressed) {
@@ -584,7 +591,7 @@ class SortablePane extends React.Component<SortablePaneProps, State> {
           }
         }}
         className={className}
-        style={{ position: 'relative', height: '100%', ...style }}
+        style={{ position: 'relative', height: this.getHeight(), ...style }}
       >
         {this.renderPanes()}
       </div>
