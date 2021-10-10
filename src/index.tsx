@@ -264,8 +264,9 @@ class SortablePane extends React.Component<SortablePaneProps, State> {
   }
 
   getHeight(): string {
+    const { margin } = this.props;
     const height = this.panes.reduce((prev, pane: PaneProperty) => {
-      return prev + Number((pane.ref && (pane.ref as HTMLElement).offsetHeight) || 0);
+      return prev + Number((pane.ref && (pane.ref as HTMLElement).offsetHeight) || 0) + (margin ?? 0);
     }, 0);
     return height + 'px';
   }
