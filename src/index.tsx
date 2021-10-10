@@ -499,7 +499,7 @@ class SortablePane extends React.Component<SortablePaneProps, State> {
     const wasPressed = this.state.isPressed;
     this.setState({ isPressed: false, delta: 0 });
     const child = children[this.state.lastPressed];
-    const lastPressedId = child.key;
+    if(!child) return;
     if (!this.props.isSortable) return;
     const panes = this.state.panes;
     if (this.props.onDragStop && wasPressed) {
