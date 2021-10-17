@@ -64,8 +64,8 @@ export class Pane extends React.Component<PaneProps> {
   }
 
   render() {
-    if (!this.props.resizable.x && !this.props.resizable.y && !this.props.resizable.xy) {
-      return <>{this.props.children}</>;
+    if (!this.props.resizable || (!this.props.resizable.x && !this.props.resizable.y && !this.props.resizable.xy)) {
+      return <React.Fragment>{this.props.children}</React.Fragment>;
     }
     return (
       <Resizable
