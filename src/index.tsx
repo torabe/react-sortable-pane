@@ -6,7 +6,7 @@ import isEqual from 'lodash.isequal';
 import debounce from 'lodash.debounce';
 import { Pane, PaneProps } from './pane';
 
-const MAXIMUM_Z_INDEX = 2147483647;
+const MAXIMUM_Z_INDEX = 1;
 const HYSTERESIS = 10;
 
 declare global {
